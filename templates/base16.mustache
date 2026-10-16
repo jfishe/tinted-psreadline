@@ -1,0 +1,27 @@
+# tinted-psreadline
+# Scheme name: {{scheme-name}}
+# Scheme author: {{scheme-author}}
+# Truecolor PSReadLine token colors; tokens drawn in the terminal's default
+# foreground keep "39" so they follow the Windows Terminal scheme.
+$e = [char]27
+Set-PSReadLineOption -Colors @{
+    ContinuationPrompt     = "$e[39m"
+    Default                = "$e[39m"
+    Member                 = "$e[39m"
+    Operator               = "$e[39m"
+    Type                   = "$e[39m"
+    Command                = "$e[38;2;{{base0A-rgb-r}};{{base0A-rgb-g}};{{base0A-rgb-b}}m"
+    Comment                = "$e[38;2;{{base03-rgb-r}};{{base03-rgb-g}};{{base03-rgb-b}}m"
+    Emphasis               = "$e[38;2;{{base09-rgb-r}};{{base09-rgb-g}};{{base09-rgb-b}}m"
+    Error                  = "$e[38;2;{{base08-rgb-r}};{{base08-rgb-g}};{{base08-rgb-b}}m"
+    Keyword                = "$e[38;2;{{base0B-rgb-r}};{{base0B-rgb-g}};{{base0B-rgb-b}}m"
+    Number                 = "$e[38;2;{{base0C-rgb-r}};{{base0C-rgb-g}};{{base0C-rgb-b}}m"
+    Parameter              = "$e[38;2;{{base0E-rgb-r}};{{base0E-rgb-g}};{{base0E-rgb-b}}m"
+    String                 = "$e[38;2;{{base0C-rgb-r}};{{base0C-rgb-g}};{{base0C-rgb-b}}m"
+    Variable               = "$e[38;2;{{base0D-rgb-r}};{{base0D-rgb-g}};{{base0D-rgb-b}}m"
+    InlinePrediction       = "$e[38;2;{{base03-rgb-r}};{{base03-rgb-g}};{{base03-rgb-b}};3m"
+    ListPrediction         = "$e[38;2;{{base0A-rgb-r}};{{base0A-rgb-g}};{{base0A-rgb-b}}m"
+    ListPredictionSelected = "$e[7m"
+    ListPredictionTooltip  = "$e[38;2;{{base03-rgb-r}};{{base03-rgb-g}};{{base03-rgb-b}};3m"
+}
+Remove-Variable e

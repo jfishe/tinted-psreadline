@@ -1,0 +1,27 @@
+# tinted-psreadline
+# Scheme name: {{scheme.system}} {{scheme.name}}
+# Scheme author: {{scheme.author}}
+# Truecolor PSReadLine token colors; tokens drawn in the terminal's default
+# foreground keep "39" so they follow the Windows Terminal scheme.
+$e = [char]27
+Set-PSReadLineOption -Colors @{
+    ContinuationPrompt     = "$e[39m"
+    Default                = "$e[39m"
+    Member                 = "$e[39m"
+    Operator               = "$e[39m"
+    Type                   = "$e[39m"
+    Command                = "$e[38;2;{{palette.yellow.normal.rgb.r}};{{palette.yellow.normal.rgb.g}};{{palette.yellow.normal.rgb.b}}m"
+    Comment                = "$e[38;2;{{palette.gray.normal.rgb.r}};{{palette.gray.normal.rgb.g}};{{palette.gray.normal.rgb.b}}m"
+    Emphasis               = "$e[38;2;{{palette.orange.normal.rgb.r}};{{palette.orange.normal.rgb.g}};{{palette.orange.normal.rgb.b}}m"
+    Error                  = "$e[38;2;{{palette.red.normal.rgb.r}};{{palette.red.normal.rgb.g}};{{palette.red.normal.rgb.b}}m"
+    Keyword                = "$e[38;2;{{palette.green.normal.rgb.r}};{{palette.green.normal.rgb.g}};{{palette.green.normal.rgb.b}}m"
+    Number                 = "$e[38;2;{{palette.cyan.normal.rgb.r}};{{palette.cyan.normal.rgb.g}};{{palette.cyan.normal.rgb.b}}m"
+    Parameter              = "$e[38;2;{{palette.magenta.normal.rgb.r}};{{palette.magenta.normal.rgb.g}};{{palette.magenta.normal.rgb.b}}m"
+    String                 = "$e[38;2;{{palette.cyan.normal.rgb.r}};{{palette.cyan.normal.rgb.g}};{{palette.cyan.normal.rgb.b}}m"
+    Variable               = "$e[38;2;{{palette.blue.normal.rgb.r}};{{palette.blue.normal.rgb.g}};{{palette.blue.normal.rgb.b}}m"
+    InlinePrediction       = "$e[38;2;{{palette.gray.normal.rgb.r}};{{palette.gray.normal.rgb.g}};{{palette.gray.normal.rgb.b}};3m"
+    ListPrediction         = "$e[38;2;{{palette.yellow.normal.rgb.r}};{{palette.yellow.normal.rgb.g}};{{palette.yellow.normal.rgb.b}}m"
+    ListPredictionSelected = "$e[7m"
+    ListPredictionTooltip  = "$e[38;2;{{palette.gray.normal.rgb.r}};{{palette.gray.normal.rgb.g}};{{palette.gray.normal.rgb.b}};3m"
+}
+Remove-Variable e
