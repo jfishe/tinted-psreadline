@@ -31,7 +31,7 @@ tinty apply "$(tinty current)"
 name = "tinted-psreadline"
 path = "~/.config/tinted-theming/tinty/tinted-psreadline"
 themes-dir = "psreadline"
-hook = "cp -f %f /c/Users/jdfen/OneDrive/Documents/PowerShell/Profile.Tinty.ps1"
+hook = "cp -f %f $HOME/userprofile/OneDrive/Documents/PowerShell/Profile.Tinty.ps1"
 supported-systems = ["base16", "base24", "tinted8"]
 ```
 
