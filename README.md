@@ -1,6 +1,6 @@
 # tinted-psreadline
 
-Local tinty template that builds a PSReadLine `Set-PSReadLineOption -Colors`
+Remote tinty template that provides a PSReadLine `Set-PSReadLineOption -Colors`
 script per scheme (base16, base24, tinted8), using 24-bit colors from the
 scheme. Default-foreground tokens keep `39` and follow the WT scheme.
 
@@ -15,25 +15,39 @@ scheme. Default-foreground tokens keep `39` and follow the WT scheme.
 | BLUE    | base0D    | palette.blue.normal    | Variable                                  |
 | MAGENTA | base0E    | palette.magenta.normal | Parameter                                 |
 
-## Rebuild
+- `templates/`: the mustache templates to edit.
+- `psreadline/`: built output, one file per scheme (committed; tinty reads it directly).
+
+## Development
+
+Edit `templates/`, then preview locally:
 
 ```bash
-tinty build tinted-psreadline
+tinty build .
 tinty apply "$(tinty current)"
 ```
 
-## Configuration
+Commit and push `templates/` and `psreadline/`. The
+[update workflow](.github/workflows/update.yml) also rebuilds `psreadline/` on
+every push touching `templates/` and weekly against the latest upstream schemes.
+Users pick up changes with `tinty update`.
 
-`config.toml`:
+## Tinted Configuration
+
+Append to `~/.config/tinted-theming/tinty/config.toml`:
 
 ```toml
 [[items]]
 name = "tinted-psreadline"
-path = "~/.config/tinted-theming/tinty/tinted-psreadline"
+path = "https://github.com/jfishe/tinted-psreadline"
 themes-dir = "psreadline"
-hook = "cp -f %f $HOME/userprofile/OneDrive/Documents/PowerShell/Profile.Tinty.ps1"
+hook = "[ -z \"$USERPROFILE\" ] || cp -f %f \"$USERPROFILE/OneDrive/Documents/PowerShell/Profile.Tinty.ps1\""
 supported-systems = ["base16", "base24", "tinted8"]
 ```
+
+On WSL, the hook reads `$USERPROFILE` from the shell that runs `tinty`; see
+[tinted-dircolors](https://github.com/jfishe/tinted-dircolors#tinted-configuration)
+for passing it through `WSLENV`.
 
 The pwsh profile dot-sources `Profile.Tinty.ps1` through `Update-TintyColors`.
 It runs at startup and on every prompt (from `Invoke-Starship-PreCommand`), and
