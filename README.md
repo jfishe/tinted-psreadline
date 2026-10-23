@@ -53,3 +53,20 @@ The pwsh profile dot-sources `Profile.Tinty.ps1` through `Update-TintyColors`.
 It runs at startup and on every prompt (from `Invoke-Starship-PreCommand`), and
 re-sources the file when its timestamp changes, so open sessions pick up
 `tinty apply` on the next prompt.
+
+## Credits
+
+- [Tinted Theming schemes](https://github.com/tinted-theming/schemes): the
+  base16, base24, and tinted8 color schemes. Each file in `psreadline/` names
+  its scheme and author.
+- [tinted-builder-rust](https://github.com/tinted-theming/tinted-builder-rust)
+  builds `psreadline/`; [tinty](https://github.com/tinted-theming/tinty)
+  applies it.
+- [PSReadLine](https://github.com/PowerShell/PSReadLine), the module these
+  scripts configure.
+
+## License
+
+[MIT](LICENSE.txt). Files in `psreadline/` contain color values from the
+Tinted Theming schemes, © 2022 Tinted Theming, used under the MIT License;
+see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
