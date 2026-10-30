@@ -41,7 +41,7 @@ Append to `~/.config/tinted-theming/tinty/config.toml`:
 name = "tinted-psreadline"
 path = "https://github.com/jfishe/tinted-psreadline"
 themes-dir = "psreadline"
-hook = "[ -z \"$USERPROFILE\" ] || cp -f %f \"$USERPROFILE/OneDrive/Documents/PowerShell/Profile.Tinty.ps1\""
+hook = "[ -z \"$USERPROFILE\" ] || { mkdir -p \"$USERPROFILE/.config/tinted-theming\" && cp -f %f \"$USERPROFILE/.config/tinted-theming/Profile.Tinty.ps1\"; }"
 supported-systems = ["base16", "base24", "tinted8"]
 ```
 
@@ -49,10 +49,28 @@ On WSL, the hook reads `$USERPROFILE` from the shell that runs `tinty`; see
 [tinted-dircolors](https://github.com/jfishe/tinted-dircolors#tinted-configuration)
 for passing it through `WSLENV`.
 
-The pwsh profile dot-sources `Profile.Tinty.ps1` through `Update-TintyColors`.
-It runs at startup and on every prompt (from `Invoke-Starship-PreCommand`), and
-re-sources the file when its timestamp changes, so open sessions pick up
-`tinty apply` on the next prompt.
+The hook writes `~\.config\tinted-theming\Profile.Tinty.ps1`, a fixed path
+outside the profile folder, so it works wherever Documents lives and for both
+pwsh and Windows PowerShell. Windows PowerShell needs PSReadLine 2.2 or later;
+the built-in 2.0 rejects the prediction color keys.
+
+Dot-source it from `$PROFILE`, and re-source it when it changes so open
+sessions pick up `tinty apply` on the next prompt:
+
+```powershell
+$global:__TintyFile = Join-Path $HOME '.config/tinted-theming/Profile.Tinty.ps1'
+function Update-TintyColors {
+    $item = Get-Item -LiteralPath $global:__TintyFile -ErrorAction Ignore
+    if ($item -and $item.LastWriteTimeUtc -ne $global:__TintyStamp) {
+        $global:__TintyStamp = $item.LastWriteTimeUtc
+        . $item.FullName
+    }
+}
+Update-TintyColors
+```
+
+Call `Update-TintyColors` from the prompt too (for Starship, from
+`Invoke-Starship-PreCommand`).
 
 ## Credits
 
