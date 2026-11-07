@@ -41,11 +41,12 @@ Append to `~/.config/tinted-theming/tinty/config.toml`:
 name = "tinted-psreadline"
 path = "https://github.com/jfishe/tinted-psreadline"
 themes-dir = "psreadline"
-hook = "[ -z \"$USERPROFILE\" ] || { mkdir -p \"$USERPROFILE/.config/tinted-theming\" && cp -f %f \"$USERPROFILE/.config/tinted-theming/Profile.Tinty.ps1\"; }"
+hook = "for d in ${USERPROFILE:+\"$USERPROFILE/.config/tinted-theming\"}; do mkdir -p \"$d\" && cp -f %f \"$d/Profile.Tinty.ps1\"; done"
 supported-systems = ["base16", "base24", "tinted8"]
 ```
 
-On WSL, the hook reads `$USERPROFILE` from the shell that runs `tinty`; see
+On WSL, the hook reads `$USERPROFILE` from the shell that runs `tinty` (it does nothing
+when `$USERPROFILE` is unset); see
 [tinted-dircolors](https://github.com/jfishe/tinted-dircolors#tinted-configuration)
 for passing it through `WSLENV`.
 
