@@ -45,8 +45,8 @@ hook = "for d in ${USERPROFILE:+\"$USERPROFILE/.config/tinted-theming\"}; do mkd
 supported-systems = ["base16", "base24", "tinted8"]
 ```
 
-On WSL, the hook reads `$USERPROFILE` from the shell that runs `tinty` (it does nothing
-when `$USERPROFILE` is unset); see
+On WSL, the hook reads `$USERPROFILE` from the shell that runs `tinty` (it does
+nothing when `$USERPROFILE` is unset); see
 [tinted-dircolors](https://github.com/jfishe/tinted-dircolors#tinted-configuration)
 for passing it through `WSLENV`.
 
