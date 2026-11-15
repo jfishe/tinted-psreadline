@@ -1,0 +1,27 @@
+# tinted-psreadline
+# Scheme name: Stranger Theme Tigers
+# Scheme author: Stranger Theme (https://github.com/stranger-theme/stranger-theme)
+# Truecolor PSReadLine token colors; tokens drawn in the terminal's default
+# foreground keep "39" so they follow the Windows Terminal scheme.
+$e = [char]27
+Set-PSReadLineOption -Colors @{
+    ContinuationPrompt     = "$e[39m"
+    Default                = "$e[39m"
+    Member                 = "$e[39m"
+    Operator               = "$e[39m"
+    Type                   = "$e[39m"
+    Command                = "$e[38;2;240;198;116m"
+    Comment                = "$e[38;2;117;137;117m"
+    Emphasis               = "$e[38;2;222;147;95m"
+    Error                  = "$e[38;2;204;102;102m"
+    Keyword                = "$e[38;2;181;189;104m"
+    Number                 = "$e[38;2;129;162;190m"
+    Parameter              = "$e[38;2;255;127;42m"
+    String                 = "$e[38;2;129;162;190m"
+    Variable               = "$e[38;2;178;148;187m"
+    InlinePrediction       = "$e[38;2;117;137;117;3m"
+    ListPrediction         = "$e[38;2;240;198;116m"
+    ListPredictionSelected = "$e[7m"
+    ListPredictionTooltip  = "$e[38;2;117;137;117;3m"
+}
+Remove-Variable e
