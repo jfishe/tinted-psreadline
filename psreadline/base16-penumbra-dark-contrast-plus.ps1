@@ -1,6 +1,6 @@
 # tinted-psreadline
 # Scheme name: Penumbra Dark Contrast Plus
-# Scheme author: Zachary Weiss (https://github.com/zacharyweiss)
+# Scheme author: Neal McKee (https://github.com/nealmckee/penumbra)
 # Truecolor PSReadLine token colors; tokens drawn in the terminal's default
 # foreground keep "39" so they follow the Windows Terminal scheme.
 $e = [char]27
@@ -10,18 +10,18 @@ Set-PSReadLineOption -Colors @{
     Member                 = "$e[39m"
     Operator               = "$e[39m"
     Type                   = "$e[39m"
-    Command                = "$e[38;2;156;167;72m"
-    Comment                = "$e[38;2;99;99;99m"
-    Emphasis               = "$e[38;2;206;144;66m"
-    Error                  = "$e[38;2;223;127;120m"
-    Keyword                = "$e[38;2;80;181;132m"
-    Number                 = "$e[38;2;0;179;194m"
-    Parameter              = "$e[38;2;164;143;225m"
-    String                 = "$e[38;2;0;179;194m"
-    Variable               = "$e[38;2;97;163;230m"
-    InlinePrediction       = "$e[38;2;99;99;99;3m"
-    ListPrediction         = "$e[38;2;156;167;72m"
+    Command                = "$e[38;2;163;151;32m"
+    Comment                = "$e[38;2;91;93;98m"
+    Emphasis               = "$e[38;2;197;129;69m"
+    Error                  = "$e[38;2;205;107;118m"
+    Keyword                = "$e[38;2;88;160;97m"
+    Number                 = "$e[38;2;0;152;148m"
+    Parameter              = "$e[38;2;125;130;192m"
+    String                 = "$e[38;2;0;152;148m"
+    Variable               = "$e[38;2;0;143;198m"
+    InlinePrediction       = "$e[38;2;91;93;98;3m"
+    ListPrediction         = "$e[38;2;163;151;32m"
     ListPredictionSelected = "$e[7m"
-    ListPredictionTooltip  = "$e[38;2;99;99;99;3m"
+    ListPredictionTooltip  = "$e[38;2;91;93;98;3m"
 }
 Remove-Variable e
